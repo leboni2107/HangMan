@@ -71,7 +71,7 @@ char* GetHangman(int stage) { // Stage: Value 1-7
 }
 
 int main(void) {
-    char line[1024], selection[256], input[256], word[128][256]; // 256 Bytes per string, 128 strings = 32768 Bytes
+    char line[1024], selection[256], input[256], word[128][256], trueInput[256]; // 256 Bytes per string, 128 strings = 32768 Bytes
     int wordCount = 0, level = 0;
     srand(time(NULL));
 
@@ -114,15 +114,26 @@ int main(void) {
     fclose(inputFile);
 
     strcpy(selection, word[rand() % wordCount]);
-    printf("\n\nSelection: %s", selection);
+    printf("\n\nSelection: <%s>", selection);
 
     do {
         level++;
         printf("\nTry: ");
-        scanf("%s", selection);
+        scanf("%s", input);
 
         printf(GetHangman(level));
-    } while (input != selection);
+
+        for (int i = 0; i < strlen(input); i++) {
+            if (input[i] == selection[i])
+                trueInput[i] = selection[i];
+            else {
+                if (trueInput[i] != selection[i])
+                    trueInput[i] = '_';
+            }
+        }
+
+        printf(trueInput);
+    } while (strcmp(selection, input) != 0);
 
     return 0;
 }
