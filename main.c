@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 char* GetHangman(int stage) { // Stage: Value 0-7
     char* response;
@@ -68,19 +69,46 @@ char* GetHangman(int stage) { // Stage: Value 0-7
 }
 
 int main(void) {
-    char word[128][256]; // 256 Bytes per word, 128 words = 32768 Bytes
+    char word[128][256]; // 256 Bytes per string, 128 strings = 32768 Bytes
+    char line[1024];
 
-    FILE *input = fopen("../words.txt", "r");
+    FILE *inputFile = fopen("../words.txt", "r");
 
-    if (input == NULL) {
+    if (inputFile == NULL) {
         printf("Error: Could not open words.txt\n");
     }
     else {
-        char rawWord[256];
-        fgets(rawWord, 256, input);
-        printf("%s", rawWord);
+        int wordCount = 0;
+        while (fgets(line, 1024, inputFile) != NULL && wordCount < 128) {
+            int j = 0;
+            int charIndex = 0;
+
+            while (line[j] != '\0' && wordCount < 128) {
+                while (line[j] == ' ' || line[j] == ',' || line[j] == '\n') {
+                    j++;
+                }
+
+                charIndex = 0;
+                while (line[j] != ' ' && line[j] != ',' && line[j] != '\n' && line[j] != '\0' && charIndex < 255) {
+                    word[wordCount][charIndex] = line[j];
+                    j++;
+                    charIndex++;
+                }
+
+                if (charIndex > 0) {
+                    word[wordCount][charIndex] = '\0'; // Null terminate
+                    wordCount++;
+                }
+            }
+        }
+
+        printf("Words: ");
+        for (int i = 0; i < wordCount; i++) {
+            printf("%s ", word[i]);
+        }
+
     }
-    fclose(input);
+    fclose(inputFile);
 
     return 0;
 }

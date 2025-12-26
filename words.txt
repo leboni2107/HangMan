@@ -1,1 +1,2 @@
-Hund, Katze, Apfel, Milch, Haus, Gasse, Wertzuwachs
+Hund, Katze, Apfel, Milch, Haus,
+Gasse, Wertzuwachs
