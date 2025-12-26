@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
-char* GetHangman(int stage) { // Stage: Value 0-7
+char* GetHangman(int stage) { // Stage: Value 1-7
     char* response;
     switch (stage) {
         default:
@@ -69,8 +71,10 @@ char* GetHangman(int stage) { // Stage: Value 0-7
 }
 
 int main(void) {
-    char word[128][256]; // 256 Bytes per string, 128 strings = 32768 Bytes
-    char line[1024];
+    char line[1024], selection[256], input[256], word[128][256]; // 256 Bytes per string, 128 strings = 32768 Bytes
+    int wordCount = 0, level = 0;
+    srand(time(NULL));
+
 
     FILE *inputFile = fopen("../words.txt", "r");
 
@@ -78,7 +82,6 @@ int main(void) {
         printf("Error: Could not open words.txt\n");
     }
     else {
-        int wordCount = 0;
         while (fgets(line, 1024, inputFile) != NULL && wordCount < 128) {
             int j = 0;
             int charIndex = 0;
@@ -109,6 +112,17 @@ int main(void) {
 
     }
     fclose(inputFile);
+
+    strcpy(selection, word[rand() % wordCount]);
+    printf("\n\nSelection: %s", selection);
+
+    do {
+        level++;
+        printf("\nTry: ");
+        scanf("%s", selection);
+
+        printf(GetHangman(level));
+    } while (input != selection);
 
     return 0;
 }

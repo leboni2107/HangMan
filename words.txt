@@ -1,2 +1,3 @@
 Hund, Katze, Apfel, Milch, Haus,
-Gasse, Wertzuwachs
+Gasse, Wertzuwachs, Hamster, Wien, Supermarkt
+Geschaeft, Gasse, Bank, Taxi, Auto
