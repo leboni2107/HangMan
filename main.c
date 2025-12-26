@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 
-char* GetHangman(int stage) {
-    /*
-     * Stage: Value 0-7
-     */
+char* GetHangman(int stage) { // Stage: Value 0-7
     char* response;
     switch (stage) {
         default:
@@ -72,6 +69,9 @@ char* GetHangman(int stage) {
 }
 
 int main(void) {
+    char word[256][128]; // 256 Bytes per word, 128 words = 32768 Bytes
+
+
 
     return 0;
 }
