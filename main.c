@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 
 char* GetHangman(int stage) {
     /*
@@ -16,55 +17,61 @@ char* GetHangman(int stage) {
                        "      |\n"
                        "      |\n"
                        "      |\n";
+            break;
         case 2:
             response = "  +---+\n"
                        "  |   |\n"
-                       "  O   |"
-                       "      |"
-                       "      |"
-                       "      |";
+                       "  O   |\n"
+                       "      |\n"
+                       "      |\n"
+                       "      |\n";
+            break;
         case 3:
             response = "  +---+\n"
-                       "  |   |"
-                       "  O   |"
-                       "  |   |"
-                       "      |"
-                       "      |";
+                       "  |   |\n"
+                       "  O   |\n"
+                       "  |   |\n"
+                       "      |\n"
+                       "      |\n";
+            break;
         case 4:
             response = "  +---+\n"
-                       "  |   |"
-                       "  O   |"
-                       " /|   |"
-                       "      |"
-                       "      |";
+                       "  |   |\n"
+                       "  O   |\n"
+                       " /|   |\n"
+                       "      |\n"
+                       "      |\n";
+            break;
         case 5:
             response = "  +---+\n"
-                       "  |   |"
-                       "  O   |"
-                       " /|\\  |"
-                       "      |"
-                       "      |";
+                       "  |   |\n"
+                       "  O   |\n"
+                       " /|\\  |\n"
+                       "      |\n"
+                       "      |\n";
+            break;
         case 6:
             response = "  +---+\n"
-                       "  |   |"
-                       "  O   |"
-                       " /|\\  |"
-                       " /    |"
-                       "      |";
+                       "  |   |\n"
+                       "  O   |\n"
+                       " /|\\  |\n"
+                       " /    |\n"
+                       "      |\n";
+            break;
         case 7:
             response = "  +---+\n"
-                       "  |   |"
-                       "  O   |"
-                       " /|\\  |"
-                       " / \\  |"
-                       "      |";
-
+                       "  |   |\n"
+                       "  O   |\n"
+                       " /|\\  |\n"
+                       " / \\  |\n"
+                       "      |\n";
+            break;
     }
+
     return response;
 }
 
 int main(void) {
-    printf(GetHangman(1));
 
     return 0;
 }
